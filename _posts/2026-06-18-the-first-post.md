@@ -1,140 +1,95 @@
 ---
 layout: post
-title: "The First Post"
-date: 2026-06-18 10:42:00 +0200
-author: "Charbel Daher"
-description: "A test post"
-tags:
-  - testing
+title: "Template"
+date: 2026-06-18 11:03:00 +0200
+tag: test
+excerpt: "A comprehensive testing template for Jekyll and Liquid syntax structures."
+published: true
 ---
 
-# Heading Level 1
+## 1. Site and Page Variables
+Jekyll uses double curly braces `{{ }}` to output variables defined in your front matter or `_config.yml` file.
 
-## Heading Level 2
-
-### Heading Level 3
-
-#### Heading Level 4
-
-##### Heading Level 5
-
-###### Heading Level 6
+* **Page Title:** {{ page.title }}
+* **Post Date:** {{ page.date | date: "%B %d, %Y" }}
+* **Site Name:** {{ site.title }}
+* **Site Email:** {{ site.email }}
 
 ---
 
-## 1. Text Formatting
+## 2. Filters (Data Manipulation)
+Filters change the output of a variable using the pipe `|` symbol.
 
-This paragraph tests standard text formatting properties. You can easily make text **bold** using double asterisks or __bold__ with double underscores. To emphasize text, use *italics* or _italics_. 
-
-You can also combine them to create ***bold and italicized*** text.
-
-### Extended GFM Formatting
-* ~~Strikethrough text~~ uses double tildes.
-* ==Highlighted text== (supported by parsers like Obsidian).
-* Subscript: H~2~O
-* Superscript: X^2^
+* **Uppercase:** {{ "hello world" | upcase }}
+* **Lowercase:** {{ "HELLO WORLD" | downcase }}
+* **Word Count:** This post has {{ content | number_of_words }} words.
+* **Slugify text:** {{ "Jekyll Is Awesome!" | slugify }}
 
 ---
 
-## 2. Lists
+## 3. Conditionals (If/Else Logic)
+Control what displays on the page based on specific conditions.
 
-### Unordered List
-* First item
-* Second item
-  * Indented sub-item A (requires 2 or 4 spaces)
-  * Indented sub-item B
-* Third item
+{% if page.published == true %}
+🟢 This post is actively published.
+{% else %}
+🔴 This post is a draft.
+{% endif %}
 
-### Ordered List
-1. First ordered item
-2. Second ordered item
-   1. Nested ordered item (indented)
-   2. Another nested item
-3. Third ordered item
-
-### Task Lists (GFM)
-- [x] This task is completed
-- [ ] This task is incomplete
-- [ ] This task is locked/disabled
+{% if site.twitter_username %}
+Follow the author on Twitter: @{{ site.twitter_username }}
+{% endif %}
 
 ---
 
-## 3. Blockquotes
+## 4. Loops (Iterating Collections)
+You can loop through your site's posts, pages, or custom navigation arrays.
 
-> This is a standard single-line blockquote element.
->
-> > This is a nested blockquote layer.
-> 
-> Back to the first level of quoting text.
-
----
-
-## 4. Code Display
-
-### Inline Code
-Use the `printf()` utility or define a variable like `const testing = true` inside a standard text sentence.
-
-### Fenced Code Blocks (With Syntax Highlighting)
-```javascript
-// JavaScript Test Block
-function greetUser(name) {
-  console.log(`Hello, ${name}!`);
-  return true;
-}
-greetUser("Markdown Tester");
-```
-
-```python
-# Python Test Block
-def calculate_square(number):
-    """Returns the square of a number."""
-    return number ** 2
-
-print(calculate_square(4))
-```
+### Recent Posts List
+<ul>
+  {% for post in site.posts limit:3 %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a> 
+      ({{ post.date | date: "%Y-%m-%d" }})
+    </li>
+  {% endfor %}
+</ul>
 
 ---
 
-## 5. Rich Links and Media
+## 5. Include Snippets
+Reuse components across your site (files must live inside the `_includes/` folder).
 
-### Standard Links
-* [Markdown Guide Official Website](https://www.markdownguide.org)
-* [Anonymous Link with Title](https://www.google.com "Google Homepage")
+{% include social-links.html %}
 
-### Reference-Style Links
-You can use [Reference Link A][link-source-1] or [Reference Link B][link-source-2] elsewhere in this document.
-
-[link-source-1]: https://github.com
-[link-source-2]: https://bitbucket.org
-
-### Images
-![Placeholder Test Image](/assets/images/cat.jpg "Optional Hover Title")
+### Passing Parameters to Includes
+{% include alert.html type="warning" message="This is a custom alert message!" %}
 
 ---
 
-## 6. Tables (GFM)
+## 6. Internal Linking (Safe URL Paths)
+Never hardcode absolute links. Use the `link` or `relative_url` tags so paths don't break on GitHub Pages.
 
-| Feature Name | Syntax Rule | Expected Output | Status |
-| :--- | :---: | :---: | ---: |
-| Left-aligned | `:---` | Text shifts left | Verified |
-| Centered | `:---:` | Text is centered | Verified |
-| Right-aligned | `---:` | Text shifts right | Verified |
+* **Link to a file:** [Contact Page]({{ site.baseurl }}{% link contact.md %})
+* **Link to an asset:** <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo">
 
 ---
 
-## 7. Miscellaneous & Edge Cases
+## 7. Code Highlighting (Pygments/Rouge)
+Jekyll has built-in support for code syntax highlighting using the `highlight` tag block.
 
-### Escaping Formatting Characters
-If you want literal symbols without formatting, use backslashes: \*This is not italic\* and \# This is not a heading.
-
-### Horizontal Rules
-Three different syntax options to generate a divider line:
-
-***
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+{% endhighlight %}
 
 ---
 
-___
+## 8. Excerpts
+You can manually define where a post preview ends on your homepage using an explicit separator tag.
 
-### Inline HTML Elements
-Most processors allow raw HTML rendering. You can use <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text, or write text in <span style="color:red">explicitly styled red spans</span>.
+This sentence will show up on the homepage index loop.
+<!--more-->
+This sentence will only show up when a user clicks into the full post view.
