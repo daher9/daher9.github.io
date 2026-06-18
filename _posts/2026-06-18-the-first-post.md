@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Template"
-date: 2026-06-18 11:03:00 +0200
+date: 2026-06-18
 tag: test
 excerpt: "A comprehensive testing template for Jekyll and Liquid syntax structures."
 published: true
