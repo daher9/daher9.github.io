@@ -18,15 +18,12 @@
         const link = document.getElementById("favicon");
         const originalTitle = " Post Template ";
         if (document.hidden) {
-          document.title = "I thought we were having fun...";
           link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>😔</text></svg>";
         } else {
-          document.title = "lol";
           link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>😂</text></svg>";
 
           setTimeout(() => {
             if (!document.hidden) {
-              document.title = originalTitle;
               link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>📕</text></svg>";
             }
           }, 1000);
@@ -52,7 +49,7 @@
     <div class="post-title-row">
       <h1>Post Template</h1><a class="post-tag-badge">law</a></div><div class="post-meta-row">
       <div class="post-byline">
-        <span class="post-meta-line">by Charbel Daher</span>
+      <span class="post-meta-line">by <span style="font-weight: 600;"><a href="/about">Charbel Daher</a></span></span>
         <span class="post-meta-line">Jun 18, 2026</span>
       </div>
       <div class="post-reading-time">1 min read</div>

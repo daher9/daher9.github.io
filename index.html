@@ -16,13 +16,19 @@ pagination:
     {%- for post in paginator.posts -%}
       {%- assign post_tag = post.tags | first -%}
       <li class="post-item" data-post-tag="{{ post_tag | escape }}">
-        <span class="post-rank">{{ forloop.index }}.</span>
+        <span class="post-rank">{%- assign total_posts = paginator.total_posts -%}
+      {%- assign current_offset = paginator.page | minus: 1 | times: paginator.per_page -%}
+      {%- assign rank = total_posts | minus: current_offset | minus: forloop.index0 -%}
+      <span class="post-rank">{{ rank }}</span>.</span>
         <div class="post-body">
           <div class="post-title-row-home">
             <a class="post-title post-title-home" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
             {%- if post_tag -%}
               <span class="post-tag-badge post-tag-badge-home">{{ post_tag }}</span>
             {%- endif -%}
+          </div>
+          <div class="post-excerpt">
+            <span>{{ post.excerpt | strip_html | escape }}</span>
           </div>
           <div class="post-meta">
             <span>{{ post.date | date: "%b %-d, %Y" }}</span>

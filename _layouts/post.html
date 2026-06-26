@@ -20,7 +20,7 @@ layout: default
 
     <div class="post-meta-row">
       <div class="post-byline">
-        <span class="post-meta-line">by {{ page.author | default: site.title }}</span>
+      <span class="post-meta-line">by <span style="font-weight: 600;"><a href="/about">{{ page.author | default: site.title }}</a></span></span>
         <span class="post-meta-line">{{ page.date | date: "%b %-d, %Y" }}</span>
       </div>
       <div class="post-reading-time">{{ reading_minutes }} min read</div>

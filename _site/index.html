@@ -18,15 +18,12 @@
         const link = document.getElementById("favicon");
         const originalTitle = " Home ";
         if (document.hidden) {
-          document.title = "I thought we were having fun...";
           link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>😔</text></svg>";
         } else {
-          document.title = "lol";
           link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>😂</text></svg>";
 
           setTimeout(() => {
             if (!document.hidden) {
-              document.title = originalTitle;
               link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>📕</text></svg>";
             }
           }, 1000);
@@ -49,16 +46,31 @@
       <main class="site-wrap site-main">
         <section class="home">
   <div class="home-header">
-    <h1>Charbel Daher's Blog</h1>
+    <h1>Charbel's Blog</h1>
   </div>
   
-  <ol class="post-list" data-post-list><li class="post-item" data-post-tag="testing">
-        <span class="post-rank">1.</span>
+  <ol class="post-list" data-post-list><li class="post-item" data-post-tag="WIP">
+        <span class="post-rank"><span class="post-rank">2</span>.</span>
         <div class="post-body">
           <div class="post-title-row-home">
-            <a class="post-title post-title-home" href="/2026/06/18/the-first-post/">The First Post</a><span class="post-tag-badge post-tag-badge-home">testing</span></div>
+            <a class="post-title post-title-home" href="/2026/06/28/google-antitrust/">United States v Google LLC</a><span class="post-tag-badge post-tag-badge-home">WIP</span></div>
+          <div class="post-excerpt">
+            <span>The US accuses Google of illegal monopoly practices.</span>
+          </div>
           <div class="post-meta">
-            <span>Jun 18, 2026</span>
+            <span>Jun 28, 2026</span>
+          </div>
+        </div>
+      </li><li class="post-item" data-post-tag="The First Post">
+        <span class="post-rank"><span class="post-rank">1</span>.</span>
+        <div class="post-body">
+          <div class="post-title-row-home">
+            <a class="post-title post-title-home" href="/2026/06/27/the-first-post/">The First Post</a><span class="post-tag-badge post-tag-badge-home">The First Post</span></div>
+          <div class="post-excerpt">
+            <span>Hello, and welcome to my law blog.</span>
+          </div>
+          <div class="post-meta">
+            <span>Jun 27, 2026</span>
           </div>
         </div>
       </li></ol></section>

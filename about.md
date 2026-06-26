@@ -3,9 +3,4 @@ layout: default
 title: About
 permalink: /about/
 ---
-
-<section class="page-content">
-  <h1>About</h1>
-  <p>I am Charbel Daher.</p>
-  <p>Lorem ipsum dolor set amet.</p>
-</section>
+Hello. <strong><a href="mailto:hicharbeldaher@gmail.com" class="contact-button">Email.</a></strong>
